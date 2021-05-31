@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script>
+   <title>Circle</title>
+</head>
+
+<body>
+
+   <script>
+      const x = [];
+      const y = [];
+
+      async function getData() {
+         const response = await fetch('circlesheet - Sheet1.csv');
+         const data = await response.text();
+         const rows = data.split('\n').slice(1);
+         rows.forEach(entry => {
+            let eachRow = entry.split(',').slice(2, 18);
+            const eachRowCount = eachRow.length;
+            for (let i = 0; i < eachRowCount; i = i + 2) {
+               x.push(eachRow.splice(0, 1));
+               y.push(eachRow.splice(0, 1));
+            }
+         });
+      }
+      getData();
+
+      var scl = 20;
+
+      function setup() {
+         createCanvas(2000, 2000);
+         background(0, 100, 0);
+         stroke(255);
+         strokeWeight(2.5);
+         line(width / 2, 0, width / 2, height);
+         line(0, height / 2, width, height / 2);
+
+         var cols = floor(width / scl);
+         var rows = floor(height / scl);
+         for (let i = 0; i < cols; i++) {
+            if (i % 5 == 0) {
+               strokeWeight(1);
+            }
+            line(i * scl, 0, i * scl, height);
+            strokeWeight(.4);
+         }
+         for (let i = 0; i < rows; i++) {
+            if (i % 5 == 0) {
+               strokeWeight(1);
+            }
+            line(0, i * scl, width, i * scl);
+            strokeWeight(.4);
+         }
+      }
+      function draw() {
+         translate(width / 2, height / 2);
+         strokeWeight(.1);
+         stroke(0);
+         fill(200);
+         for (let i = 0; i < x.length; i++) {
+            rect(x[i] * scl, y[i] * scl, scl, scl);
+         }
+      }
+   </script>
+</body>
+</html>
