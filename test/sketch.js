@@ -31,10 +31,10 @@ function draw() {
   }
   
   
-  if(play == false && distance > 15) {
+  if(play == false && distance > 15 && distance < 30) {
     play = true;
     playOscillator();
-  } else if(play == true && distance < 15) {
+  } else if(play == true && distance < 15 && distance > 50) {
     play = false;
     stop();
   }
