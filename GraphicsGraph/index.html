@@ -14,9 +14,10 @@
    <script>
       const x = [];
       const y = [];
+      link = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXHBEhKHlKzGAotKcv3V-CvMzQCzlb43uFHqFGRdq7N7KB2zQIFVQbFUvKAJxigVxWxA5FZ__0WNV/pub?gid=0&single=true&output=csv"
 
       async function getData() {
-         const response = await fetch('circlesheet - Sheet1.csv');
+         const response = await fetch(link);
          const data = await response.text();
          const rows = data.split('\n').slice(1);
          rows.forEach(entry => {
