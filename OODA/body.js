@@ -12,5 +12,13 @@ class Body {
       this.acc.mult(0);
    }
 
-   
+   applyForce(force) {
+      this.acc.add(force);
+   }
+
+   display() {
+      stroke(0);
+      fill(175);
+      ellipse(this.pos.x, this.pos.y, 8, 8);
+   }
 }

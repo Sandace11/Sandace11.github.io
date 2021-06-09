@@ -13,3 +13,10 @@ function draw() {
     b.display();
   
 }
+
+
+
+function mousePressed() {
+    wind = new p5.Vector(0.1,0);
+    b.applyForce(wind);
+}  
