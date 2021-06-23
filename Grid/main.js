@@ -19,11 +19,11 @@ function setup() {
     
     // createLoop({duration:3, gif:"download"})
 
-    //camX = -asin(1/sqrt(3));
-    //camY = -PI/4;
+    camX = -asin(1/sqrt(3));
+    camY = -PI/4;
 
-	camX = 0.63;
-    camY = -0.83;
+    //camX = 0.63;
+    //camY = -0.83;
     
     leftBound = -width/2 + 500
     rightBound = width/2 - 500;
@@ -31,6 +31,7 @@ function setup() {
     bottomBound = height/2;
     
     ortho();
+    // noLoop();
 
     // textSize(40);
     // textAlign(CENTER, CENTER);
@@ -46,16 +47,18 @@ function draw() {
 
     orbitControl();
     // normalMaterial();
-    rotateX(camX);
-    rotateY(camY);
+     rotateX(camX);
+     rotateY(camY);
 
     for(let z = topBound; z < bottomBound; z += seperation) {  
         for(let x = leftBound; x < rightBound; x += seperation) {   
             push(); 
-                h = map(sin(angle + x/70 + z/50), -1, 1, minHeight, maxHeight);
+                h = map(sin(angle + x/50 + z/50), -1, 1, minHeight, maxHeight);
                 fill(x + 200, z - 200, x - 100, 255);
-                // fill(100,10)
-                // noStroke();
+                // fill(100,10);
+		strokeWeight(3)
+		stroke(200);
+                //noStroke();
                 translate(x, 0, z);
                 box(widthOfCube, h, widthOfCube);
             pop();
