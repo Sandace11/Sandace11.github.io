@@ -1,1 +1,1 @@
-Sitemap: /https://sandesh-ghimire.com.np/sitemap.xml
+Sitemap: /sitemap.xml
