@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>/about/</loc>
+<lastmod>2022-02-06T18:40:08+05:45</lastmod>
+</url>
+<url>
+<loc>/blog/</loc>
+<lastmod>2022-02-06T18:40:08+05:45</lastmod>
+</url>
+<url>
+<loc>/elements/</loc>
+<lastmod>2022-02-06T18:40:08+05:45</lastmod>
+</url>
+<url>
+<loc>/</loc>
+<lastmod>2022-02-06T18:40:08+05:45</lastmod>
+</url>
+<url>
+<loc>/projects/</loc>
+<lastmod>2022-02-06T18:40:08+05:45</lastmod>
+</url>
+<url>
+<loc>/blog/that-which-does-not-kill-us-makes-us-stronger</loc>
+<lastmod>2022-01-30T17:46:35+05:45</lastmod>
+</url>
+<url>
+<loc>/project/green-plant</loc>
+<lastmod>2021-01-05T08:05:35+05:45</lastmod>
+</url>
+<url>
+<loc>/tag/coding.html</loc>
+</url>
+</urlset>
