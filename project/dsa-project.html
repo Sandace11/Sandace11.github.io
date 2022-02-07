@@ -6,27 +6,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Not a project</title>
+  <title>Data Structure & Algorithms Project</title>
   <meta name='description' content='My personal Website'>
 
-  <link rel="canonical" href="http://localhost:4000/project/green-plant">
+  <link rel="canonical" href="/project/dsa-project">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Not a project – Sandesh Ghimire">
-  <meta name="twitter:description" content="Text text text Text text text Text text text Text text text 
-Text text text Text text text Text text text Text text text 
-Text text text Text text text Text text text
+  <meta name="twitter:title" content="Data Structure & Algorithms Project – Sandesh Ghimire">
+  <meta name="twitter:description" content="
 ">
-  <meta name="twitter:image:src" content="http://localhost:4000/images/project-9.jpg">
+  <meta name="twitter:image:src" content="/images/project-2.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="Not a project – Sandesh Ghimire">
-  <meta property="og:description" content="Text text text Text text text Text text text Text text text 
-Text text text Text text text Text text text Text text text 
-Text text text Text text text Text text text
+  <meta property="og:title" content="Data Structure & Algorithms Project – Sandesh Ghimire">
+  <meta property="og:description" content="
 ">
-  <meta property="og:image" content="http://localhost:4000/images/project-9.jpg">
+  <meta property="og:image" content="/images/project-2.png">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -86,17 +82,9 @@ Text text text Text text text Text text text
                 
               
                 
-                <li class="nav__item dropdown">
-                  <span class="nav__link dropdown-toggle">Pages <i class="ion ion-ios-arrow-down arrow-down"></i></span>
-                  <div class="dropdown-menu">
-                    
-                      <a href="/about/" class="nav__link">About</a>
-                    
-                      <a href="/elements/" class="nav__link">Elements</a>
-                    
-                  </div>
+                <li class="nav__item">
+                  <a href="/about/" class="nav__link">About</a>
                 </li>
-
                 
               
 
@@ -142,9 +130,9 @@ Text text text Text text text Text text text
           
 <div class="container">
   <div class="c-page-heading">
-    <h1 class="c-page-heading__title">Not a project</h1>
+    <h1 class="c-page-heading__title">Data Structure & Algorithms Project</h1>
     
-      <p class="c-page-heading__description">Javascript</p>
+      <p class="c-page-heading__description">Algorithm</p>
     
   </div>
 </div>
@@ -152,11 +140,11 @@ Text text text Text text text Text text text
   
   <!--bookshop-live name(page-image/page-image.jekyll.html) params(image=page_image) context() -->
           
-<div class="post">
+<div class="customContainer">
   <div class="row">
     <div class="col col-12">
       <div class="c-page-image animate">
-        <img loading="lazy" src="/images/project-9.jpg" alt="">
+        <img loading="lazy" src="/images/project-2.png" alt="">
       </div>
     </div>
   </div>
@@ -164,29 +152,81 @@ Text text text Text text text Text text text
           <!--bookshop-live end-->
 
   <div class="page animate">
-    <p>Text text text Text text text Text text text Text text text 
-Text text text Text text text Text text text Text text text 
-Text text text Text text text Text text text</p>
+    <p><br /></p>
 
-<!-- For Code -->
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="nv">$ </span>bash bash bash
+<h4 id="githubcomsandace11dsa_project"><a href="https://github.com/Sandace11/DSA_Project">Github.com/Sandace11/DSA_Project</a></h4>
+
+<h1 id="dsa_project">DSA_Project</h1>
+<p>Data Structure and Algorithm Project, 4th Semester</p>
+
+<h2 id="visualization-of-quicksort-algorithm--huffman-tree">Visualization of Quicksort Algorithm &amp; Huffman Tree</h2>
+
+<p><img src="https://raw.githubusercontent.com/Sandace11/DSA_Project/main/screenshots/output.gif" alt="screenshot.gif" /></p>
+
+<h3 id="requirements">Requirements</h3>
+<ul>
+  <li>SDL2</li>
+  <li>SDL2_ttf (for rendering fonts)</li>
+  <li>GNU Make (for building executable)</li>
+</ul>
+
+<h3 id="project-initialization">Project Initialization</h3>
+<p>Run the <code class="language-plaintext highlighter-rouge">init.sh</code> to initialize the directory structure.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod +x init.sh
+./init.sh
+</code></pre></div></div>
+<p>If your default shell does not support bash scripting, create two 
+new directories manually : <code class="language-plaintext highlighter-rouge">build</code> and <code class="language-plaintext highlighter-rouge">bin</code>. That is what <code class="language-plaintext highlighter-rouge">init.sh</code>
+essentially does. For more details, see <strong>Directory Structure</strong> below.</p>
+
+<h3 id="make-instructions">Make Instructions</h3>
+<p><code class="language-plaintext highlighter-rouge">make</code> - to compile the program<br />
+<code class="language-plaintext highlighter-rouge">make run</code> - to run the build/executable<br />
+<code class="language-plaintext highlighter-rouge">make clean</code> - delete the created object files, for cleanup</p>
+
+<h3 id="directory-structure">Directory Structure</h3>
+<p><code class="language-plaintext highlighter-rouge">init.sh</code> creates two new directories</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">build</code> (to store object files)</li>
+  <li><code class="language-plaintext highlighter-rouge">bin</code> (to store the final binary)</li>
+</ul>
+
+<p>These directories are essential as all object files and the final
+created executable use them as path. This is done to keep the root
+project directory clean.</p>
+
+<p>The names can be manually edited inside the <code class="language-plaintext highlighter-rouge">MakeFile</code> and 
+<code class="language-plaintext highlighter-rouge">init.sh</code> (just change the variable values inside):</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>build_dir=build
+binary_dir=bin
+</code></pre></div></div>
+<p>Your final project structure should look something like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.
+├── assets/                 # Fonts and other resources
+├── bin/                    # Final working binary
+├── build/                  # Compiled object files
+├── includes/               # Headers and their source files
+├── lib/                    # Custom files that fall under 'library'
+├── screenshots/            # If and any screenshots for preview
+├── main.cpp                # Entry point into the program
+├── init.sh                 # The initialization script
+├── MakeFile                # MakeFile for compilation/build instructions
+└── README.md               # README file
 </code></pre></div></div>
 
-<!-- For quotes -->
-<blockquote>
-  <p>asdasd</p>
-</blockquote>
+<h3 id="notes">Notes:</h3>
+<ul>
+  <li>Not Windows compatible for now, mostly due to path changes required for SDL.</li>
+  <li>Need to work on a script to auto-install all the required libraries.</li>
+  <li>External contributions/pull requests will not be accepted as of 
+now, since this is a college project.</li>
+</ul>
 
-<!-- For HTML characters. https://www.w3schools.com/html/html_entities.asp -->
-<!-- &nbsp; -->
+<h3 id="primary-contributors">Primary Contributors:</h3>
+<p><a href="https://github.com/pranjalpokharel7">@pranjalpokharel7</a><br />
+<a href="https://github.com/Sandace11">@Sandace11</a><br />
+<a href="https://github.com/UdeshyaDhungana">@UdeshyaDhungana</a></p>
 
-<p><img src="/images/image-example-3.jpg" alt="Image1 - need to add" width="1200" height="900" /></p>
-
-<p><a href="/projects">Link</a>, Text text text Text text text Text text text Text text text</p>
-
-<p><img src="/images/image-example-4.jpg" alt="Image2 - need to add" width="1200" height="900" /></p>
-
-<p>Text text text Text text text Text text text Text text text</p>
 
   </div>
 
