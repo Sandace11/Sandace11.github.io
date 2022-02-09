@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js"></script>
+   <title>Circle/Ellipse</title>
+</head>
+
+<body>
+
+   <script>
+      const x = [];
+      const y = [];
+      const center = [];
+      // link for circle
+      const cLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXHBEhKHlKzGAotKcv3V-CvMzQCzlb43uFHqFGRdq7N7KB2zQIFVQbFUvKAJxigVxWxA5FZ__0WNV/pub?gid=0&single=true&output=csv"
+      //link for ellipse
+      const eLink = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRoXHBEhKHlKzGAotKcv3V-CvMzQCzlb43uFHqFGRdq7N7KB2zQIFVQbFUvKAJxigVxWxA5FZ__0WNV/pub?gid=132397843&single=true&output=csv"
+
+
+      async function getData() {
+         const response = await fetch(eLink);
+         const data = await response.text();
+         const rows = data.split('\n').slice(1);
+
+         let firstRow = rows[0].split(',');
+         center.push(firstRow.pop() * 1);
+         center.push(firstRow.pop() * 1);
+
+         rows.forEach(entry => {
+            let eachRow = entry.split(',').slice(2);
+            eachRow.pop();
+            eachRow.pop();
+
+            const eachRowCount = eachRow.length;
+            for (let i = 0; i < eachRowCount; i = i + 2) {
+               x.push(eachRow.splice(0, 1));
+               y.push(eachRow.splice(0, 1));
+            }
+         });
+      }
+      getData();
+
+      let scl = 20;
+
+      function setup() {
+         createCanvas(1200, 1000);
+         background(0, 100, 0);
+         stroke(255);
+         strokeWeight(2.5);
+         line(width / 2, 0, width / 2, height);
+         line(0, height / 2, width, height / 2);
+
+         var cols = floor(width / scl);
+         var rows = floor(height / scl);
+         for (let i = 0; i < cols; i++) {
+            if (i % 5 == 0) {
+               strokeWeight(1);
+            }
+            line(i * scl, 0, i * scl, height);
+            strokeWeight(.4);
+         }
+         for (let i = 0; i < rows; i++) {
+            if (i % 5 == 0) {
+               strokeWeight(1);
+            }
+            line(0, i * scl, width, i * scl);
+            strokeWeight(.4);
+         }
+      }
+
+      function draw() {
+         translate(width / 2, height / 2);
+         strokeWeight(2);
+         stroke(0);
+         fill(250)
+         circle(center[0] * scl, -center[1] * scl, scl / 2 + 5);
+         for (let i = 0; i < x.length; i++) {
+            // rect(x[i] * scl, -y[i] * scl, scl, scl);
+            circle(x[i] * scl, -y[i] * scl, scl / 2 + 5)
+         }
+      }
+   </script>
+</body>
+
+</html>
