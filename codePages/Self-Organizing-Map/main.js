@@ -31,4 +31,20 @@ function draw() {   //Main loop
     text('Topological radius : ' + (som1.neighbourhoodRadius / constCellWidth).toFixed(3), 10, constWindowHeight + 100, constWindowWidth, 30);
     text('No of nodes : ' + constNumCellsAcross * constNumCellsDown, 10, constWindowHeight + 130, constWindowWidth, 30);
     text('Size of input vector : ' + constSizeOfInputVector, 10, constWindowHeight + 160, constWindowWidth, 30);
+
+    let x = Math.floor(mouseX / constCellWidth)
+    let y = Math.floor(mouseY / constCellHeight)
+
+    x = constrain(x, 0, constNumCellsAcross - 1)
+    y = constrain(y, 0, constNumCellsDown - 1)
+
+    fill(255, 20, 20);
+    text(`Wt of Node (${x}, ${y})`, 250, constWindowHeight + 40, constWindowWidth, 30);
+    som1.nodes[x + y * constNumCellsAcross].m_dWeights.forEach((weight, index) => {
+        index == 0 ? text('SepalLength', 230, constWindowHeight + 70 + index * 30, constWindowWidth, 30) : 1;
+        index == 1 ? text('SepalWidth', 230, constWindowHeight + 70 + index * 30, constWindowWidth, 30) : 1;
+        index == 2 ? text('PetalLength', 230, constWindowHeight + 70 + index * 30, constWindowWidth, 30) : 1;
+        index == 3 ? text('PetalWidth', 230, constWindowHeight + 70 + index * 30, constWindowWidth, 30) : 1;
+        text(`: ${weight.toFixed(3)}`, 340, constWindowHeight + 70 + index * 30, constWindowWidth, 30)
+    })
 }
