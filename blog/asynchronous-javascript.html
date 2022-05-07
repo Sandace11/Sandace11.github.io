@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Asynchronous Javascript</title>
+  <meta name='description' content='Brief overview of asynchronous programming in javascript'>
+
+  <link rel="canonical" href="http://localhost:4000/blog/asynchronous-javascript">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Asynchronous Javascript – Sandesh Ghimire">
+  <meta name="twitter:description" content="Brief overview of asynchronous programming in javascript">
+  <meta name="twitter:image:src" content="http://localhost:4000/images/asynchronous.png">
+
+  <!-- Facebook OpenGraph -->
+  <meta property="og:title" content="Asynchronous Javascript – Sandesh Ghimire">
+  <meta property="og:description" content="Brief overview of asynchronous programming in javascript">
+  <meta property="og:image" content="http://localhost:4000/images/asynchronous.png">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Ionicons -->
+  <link href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body>
+
+    
+
+    <!-- begin header -->
+<header class="c-header">
+  <div class="container">
+    <div class="row">
+      <div class="c-header__inner">
+
+        <div class="logo">
+          <a class="logo__link" href="/">
+          
+            <img class="logo__image" src="/images/mytemplogo.png" alt="Sandesh Ghimire">
+          
+          </a>
+        </div>
+
+        <nav class="main-nav">
+          <div class="main-nav__box">
+
+            <div class="nav__icon-close">
+              <i class="ion ion-md-close"></i>
+            </div>
+
+            <div class="nav__title">Menu</div>
+
+              <ul class="nav__list list-reset">
+
+              
+                
+                <li class="nav__item">
+                  <a href="/" class="nav__link">Home</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/projects/" class="nav__link">Projects</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/blog/" class="nav__link">Blog</a>
+                </li>
+                
+              
+                
+                <li class="nav__item">
+                  <a href="/about/" class="nav__link">About</a>
+                </li>
+                
+              
+
+            </ul>
+          </div>
+
+          <!--bookshop-live name(social-link.jekyll.html) params() context() -->
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/Sandace11" target="_blank" rel="noopener" aria-label="twitter icon"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Sandace11" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/sandesh.ghimire.568632/" target="_blank" rel="noopener" aria-label="facebook icon"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+          <!--bookshop-live end-->
+        </nav>
+
+        <div class="nav-button">
+          <i class="nav__icon nav__icon-menu ion ion-md-menu"></i>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+<!-- end header -->
+
+    <div class="post-top">
+  <div class="container">
+    <div class="row">
+
+      
+      <div class="col col-6 col-d-12">
+        <div class="post-image">
+          <img loading="lazy" src="/images/asynchronous.png" alt="Asynchronous Javascript">
+        </div>
+      </div>
+      
+
+      <div class="col col-6 col-d-12">
+        <div class="post__info">
+
+          
+          <div class="post-tags">
+            
+              <a href="/tag/coding" class="post-tags__tag">Coding</a>
+            
+          </div>
+          
+
+
+          <h1 class="post__title">Asynchronous Javascript</h1>
+
+          <div class="post__meta">
+            <div class="post__author-image">
+              <img loading="lazy" src="/images/av.jpg" alt="Sandesh Ghimire">
+            </div>
+
+            <div class="post__meta-bottom">
+              <div class="post__author">Sandesh Ghimire</div>
+              <time class="post__date" datetime="2022-05-07T14:39:00+05:45">07 May 2022</time>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- begin post -->
+<div class="container animate">
+
+  <article class="post">
+
+    <div class="post__content">
+      <p>Asynchronous Programming is the technique that enables us to handle asynchronous tasks like file uploads or HTTP requests which makes sure that our program remains responsive rather than just waiting for these tasks to complete.</p>
+
+<p>Here I am going to talk about callbacks, promises and async-await in javascript. Note that this is intended for people with a basic understanding of javascript and not intended to be an ‘introduction’ to these topics. I would suggest learning about asynchronous programming at :</p>
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous">https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous</a></li>
+  <li><a href="https://javascript.info/js">https://javascript.info/js</a></li>
+</ul>
+
+<p>Before starting, the first thing we should note is that when we use these asynchronous functions in the real world, we typically deal with two outcomes : a success case and a failure case; i.e. required operation was performed or there was some error during operation.</p>
+
+<p>Okay let’s start with <b>callbacks</b></p>
+
+<blockquote>
+  <p>Callbacks</p>
+</blockquote>
+
+<p>In essence, a <b>callback function</b> is a function that is passed as an argument to another function. The idea is that we have an extra argument at the end where we pass our function with the expection that this function will be executed once the asynchronous operation is completed.</p>
+
+<p>Let’s see this in action. Here I have a simple doSomething function for example(Not practical as my function is not even asynchronous). Although we generally don’t create our own asynchronous functions, it should be noted that we can if we want to. We generally deal with calling the asynchronous function (second part). If we see the doSomething function call, we can see an anonymous function being passed as an argument(no other arguments in this case) with error and result.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">doSomething</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Success case</span>
+        <span class="nx">callback</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="dl">"</span><span class="s2">Success result here</span><span class="dl">"</span><span class="p">);</span>
+
+        <span class="c1">//...</span>
+        <span class="c1">// Error case</span>
+        <span class="c1">// callback('Error has occured!', undefined); // remember that callback can only be called once</span>
+    <span class="p">}</span>
+
+    <span class="nx">doSomething</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p><br />
+Let’s see a practical example. Here I want to find a customer with the given name from the mongoDB database. Obviously this findOne is an asynchronous operation. So, the first argument is the the normal argument of the function. The final argument on the other hand is the callback pattern of sending an anonymous function with the success result and error.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="dl">'</span><span class="s1">Customers</span><span class="dl">'</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span>
+        <span class="na">name</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">Sherlock Holmes</span><span class="dl">'</span>
+    <span class="p">},</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">})</span>
+</code></pre></div></div>
+
+<p><br />
+The problem with the callback pattern is that it looks clunky and not as elegant as just doing something like (as in synchronous programming) :</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">requiredUser</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="dl">'</span><span class="s1">Customers</span><span class="dl">'</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span><span class="na">name</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">Sherlock Holmes</span><span class="dl">'</span><span class="p">});</span>
+</code></pre></div></div>
+
+<p><br />
+Moreover imagine stacking multiple callbacks inside callbacks(People call it callback hell).</p>
+
+<blockquote>
+  <p>Promise</p>
+</blockquote>
+
+<p>Okay, lets move on to another approach. Now with Promises, we don’t send a function to be executed on completion of the asynchronous operation. Rather, the idea is that the asynchronous function returns an object(called a Promise) when we call the function. So? What do I do with the object then? Remember that it all comes down to fact that we either expect the asynchronous operation to succeed(called resolved) or fail(called rejected). We use then() and catch() for these.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">doSomething</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Success case</span>
+        <span class="nx">resolve</span><span class="p">(</span><span class="dl">'</span><span class="s1">Result of successful operation</span><span class="dl">'</span><span class="p">);</span>
+
+        <span class="c1">//....</span>
+        <span class="nx">reject</span><span class="p">(</span><span class="dl">'</span><span class="s1">Some error</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">})</span>
+
+    <span class="nx">doSomething</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="p">})</span>
+</code></pre></div></div>
+
+<p><br />
+Here we use then() for result and at the end we use catch() to catch any errors.</p>
+
+<p>Before seeing a real example, I want to show something called promise chaining; i.e. how we can stack promises a lot better than we could do for callbacks :</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">resolve</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
+            <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">sum</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">add</span><span class="p">(</span><span class="nx">sum</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">sum2</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum2</span><span class="p">);</span>
+    <span class="p">})</span>
+</code></pre></div></div>
+
+<p><br />
+Here, what I wanted to show is how we can chain a bunch of promises together to essentially use the result of one promise to call another function. What I mean by that is I want the second sum() function call to wait for the result of the first one and only then execute.</p>
+
+<p>Okay lets see the database example with promise.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="dl">'</span><span class="s1">Customers</span><span class="dl">'</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span>
+        <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Sherlock Holmes</span><span class="dl">'</span>
+    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">})</span>
+</code></pre></div></div>
+
+<p><br />
+This is indeed more easier to read that callbacks. But still, we haven’t achieved our dream of calling asynchronous functions as we do with synchronous ones like :</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">sum1</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">sum2</span> <span class="o">=</span> <span class="nx">add</span><span class="p">(</span><span class="nx">sum1</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum2</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><br />
+(Note that this obviously doesn’t work because add is supposed to be an asynchronous function)</p>
+
+<blockquote>
+  <p>Async-await</p>
+</blockquote>
+
+<p>Now comes the cool part. Before diving into async and await, we need to get something clear first. Its not like async-await is the next progressive thing from promises like going from callbacks to promises. It just helps/makes it easier to work with promises and helps us manage our asynchronous code.</p>
+
+<p>Okay, what’s cool about async-await is that we can call asynchronous functions like we had wanted to above :</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">resolve</span><span class="p">(</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
+            <span class="p">},</span><span class="mi">1000</span><span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+
+    <span class="kd">const</span> <span class="nx">doSmthg</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">sum1</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+        <span class="kd">const</span> <span class="nx">sum2</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">add</span><span class="p">(</span><span class="nx">sum1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum2</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">doSmthg</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><br />
+See that we can just store the result of one add function call and the call the next one afterwards. As the name suggests, we ‘await’ the add function to complete its execution before the execution of the next await function. Okay, now let’s see how we use this. As of now, we have to use ‘await’ inside a function and this function has to be marked as asynchronous. We use ‘async’ infront of a function to indicate it as a asynchronous function where you intend to use ‘await’.</p>
+
+<p>For the sake of completion, I will briefly note a few things :</p>
+<ol>
+  <li>
+    <p>Normal functions return whatever you return inside(or undefined if nothing is returned). But async functions always returns a promise which is fulfilled with the value you return :</p>
+
+    <ul>
+      <li>Normal function
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="kd">const</span> <span class="nx">doSmthg</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="dl">'</span><span class="s1">Hey</span><span class="dl">'</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">doSmthg</span><span class="p">());</span>
+
+  <span class="o">--&gt;</span> <span class="nx">Hey</span>
+</code></pre></div>        </div>
+      </li>
+      <li>Async function
+        <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="kd">const</span> <span class="nx">doSmthg</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="dl">'</span><span class="s1">Hey</span><span class="dl">'</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">doSmthg</span><span class="p">());</span>
+
+  <span class="o">--&gt;</span> <span class="nb">Promise</span> <span class="p">{</span><span class="nx">Hey</span><span class="p">}</span>
+</code></pre></div>        </div>
+        <p><br /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Remember that the only thing we are going to do differently is in handling the promise(ie. inside the doSmthg function where we call add). We don’t have to alter the asynchronous function add() (It would be different for callback and promise though). It still returns a promise.</p>
+  </li>
+  <li>
+    <p>To handle errors, use try and catch blocks</p>
+  </li>
+</ol>
+
+<p><br />
+<br />
+<b>Thank you for making it to the end! I hope you learned something. I’ve probably left important bits of information or made few errors here and there as I am not an expert in Javascript. So, do let me know. </b></p>
+
+    </div>
+
+    <div class="post__share">
+  <div class="share__head">
+    <div class="share__title">Share this Post</div>
+  </div>
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__twitter"
+        href="https://twitter.com/intent/tweet?text=Asynchronous%20Javascript&url=http://localhost:4000/blog/asynchronous-javascript"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__facebook"
+        href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/blog/asynchronous-javascript"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__pinterest"
+        href="http://pinterest.com/pin/create/button/?url=http://localhost:4000/blog/asynchronous-javascript&amp;media=http://localhost:4000/images/asynchronous.png&amp;description=Asynchronous%20Javascript"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Pinterest" rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+    <li class="share__item">
+      <a class="share__link share__linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/blog/asynchronous-javascript&title=Asynchronous%20Javascript&summary=Brief%20overview%20of%20asynchronous%20programming%20in%20javascript&source=Vonge"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+  </ul>
+</div>
+
+  </article>
+</div>
+<!-- end post -->
+
+<div class="container">
+  <div class="row">
+    <div class="col col-10 col-d-12 push-d-0 push-1">
+      <div class="post__navigation animate">
+  
+  <a class="post__prev" href="/blog/that-which-does-not-kill-us-makes-us-stronger">
+    <div class="prev__image">
+      <img loading="lazy" src="/images/project-9.jpg" alt="Asynchronous Javascript">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Prev post</span>
+      <h2 class="post__nav__title">Need to add new post</h2>
+    </div>
+  </a>
+  
+
+  
+</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- begin related posts -->
+<div class="container">
+  <section class="related-posts is-related animate">
+    <div class="row">
+      <div class="col col-12">
+        <div class="container__inner">
+          <div class="section__info">
+            <div class="section__head">
+              <h2 class="section__title">You may also like</h2>
+              <a class="section__link" href="/blog">
+                
+                
+                  
+                    <a href="/tags#Coding" class="section__link related-tag">See all<span> Coding</span> <i class="ion ion-md-arrow-forward"></i></a>
+                  
+                
+              
+              </a>
+            </div>
+          </div>
+          <div class="row">
+
+          
+            
+            
+      
+            
+      
+            
+            
+            
+            
+      
+            
+      
+            
+
+              <div class="article col col-4 col-d-6 col-t-12">
+                <div class="article__inner">
+              
+                  
+                  <div class="image-wrap">
+                    <a class="article__image" href="/blog/that-which-does-not-kill-us-makes-us-stronger">
+                      <img loading="lazy" src="/images/project-9.jpg" alt="Need to add new post">
+                    </a>
+                  </div>
+                  
+              
+                  <div class="article__content">
+              
+                    
+                    <div class="article-tags__box">
+                      
+                      <a href="/tag/coding" class="article__tag">Coding</a>
+                      
+                    </div>
+                    
+              
+                    <h2 class="article__title">
+                      <a href="/blog/that-which-does-not-kill-us-makes-us-stronger">Need to add new post</a>
+                    </h2>
+              
+                    <p class="article__excerpt">
+                      This post is a post for the sake of a post.
+                    </p>
+              
+                    <div class="article__meta">
+                      <div class="article__author-image">
+                        <img loading="lazy" src="/images/av.jpg" alt="Sandesh Ghimire">
+                      </div>
+                      <div class="article-info">
+                        <div class="article__author-name">Sandesh Ghimire</div>
+                        <span class="article__date"><time datetime="2022-01-30T17:46:35+05:45">30 Jan 2022</time></span>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
+
+            
+                
+              
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- end related posts -->
+
+
+
+
+
+    <!-- 
+        Bookshop components are accessed using the bookshop tag, 
+        using the same syntax as the standard Jekyll include tag.
+    -->
+    <!--bookshop-live name(page.jekyll.html) params(content_blocks=page.content_blocks page_theme=page.page_theme) context() -->
+          
+          <!--bookshop-live end-->
+
+    <div class="top" title="Top"><i class="ion ion-ios-arrow-up"></i></div>
+
+    <!-- begin footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+
+        <!--bookshop-live name(social-link.jekyll.html) params() context() -->
+          
+<div class="social">
+  <ul class="social__list list-reset">
+    
+    <li class="social__item">
+      <a class="social__link" href="https://twitter.com/Sandace11" target="_blank" rel="noopener" aria-label="twitter icon"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://github.com/Sandace11" target="_blank" rel="noopener" aria-label="github icon"><i class="ion ion-logo-github"></i></a>
+    </li>
+    
+    <li class="social__item">
+      <a class="social__link" href="https://www.facebook.com/sandesh.ghimire.568632/" target="_blank" rel="noopener" aria-label="facebook icon"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+    
+  </ul>
+</div>
+
+          <!--bookshop-live end-->
+
+        <ul class="footer_nav list-reset">
+          
+          <li class="footer_nav__item">
+            <a href="/" class="footer_nav__link">Home</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/projects/" class="footer_nav__link">Projects</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/elements/" class="footer_nav__link">Elements</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/about/" class="footer_nav__link">About</a>
+          </li>
+          
+          <li class="footer_nav__item">
+            <a href="/blog/" class="footer_nav__link">Blog</a>
+          </li>
+          
+        </ul>
+
+        <div class="copyright"><p>2022 <a href="/">Sandesh Ghimire</a>. Site created using <a href = "https://jekyllrb.com/">Jekyll</a>.</p></div>
+
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- end footer -->
+
+    <!--
+        load the live component for CloudCannon live previews.
+    -->
+    <script>
+(function(){
+  const bookshopLiveSetup = (CloudCannon) => {
+    CloudCannon.enableEvents();
+
+    const head = document.querySelector('head');
+    const script = document.createElement('script');
+    script.src = `/_cloudcannon/bookshop-live.js`;
+    script.onload = function() {
+      window.bookshopLive = new window.BookshopLive({
+        remoteGlobals: ['/_cloudcannon/bookshop-site-data.json']
+      });
+      const updateBookshopLive = async () => {
+        const frontMatter = await CloudCannon.value();
+        const options = window.bookshopLiveOptions || {};
+        await window.bookshopLive.update({page: frontMatter}, options);
+        CloudCannon?.refreshInterface?.();
+      }
+      document.addEventListener('cloudcannon:update', updateBookshopLive);
+      updateBookshopLive();
+    }
+    head.appendChild(script);
+  }
+
+  document.addEventListener('cloudcannon:load', function (e) {
+    bookshopLiveSetup(e.detail.CloudCannon);
+  });
+})();
+</script>
+
+    <script src="/js/scripts.js"></script>
+    <script src="/js/common.js"></script>
+</body>
+</html>
