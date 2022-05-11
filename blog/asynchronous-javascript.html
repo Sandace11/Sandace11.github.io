@@ -187,9 +187,9 @@
   <p>Callbacks</p>
 </blockquote>
 
-<p>In essence, a <b>callback function</b> is a function that is passed as an argument to another function. The idea is that we have an extra argument at the end where we pass our function with the expection that this function will be executed once the asynchronous operation is completed.</p>
+<p>In essence, a <b>callback function</b> is a function that is passed as an argument to another function. The idea is that we have an extra argument at the end where we pass our function with the expectation that this function will be executed once the asynchronous operation is completed.</p>
 
-<p>Let’s see this in action. Here I have a simple doSomething function for example(Not practical as my function is not even asynchronous). Although we generally don’t create our own asynchronous functions, it should be noted that we can if we want to. We generally deal with calling the asynchronous function (second part). If we see the doSomething function call, we can see an anonymous function being passed as an argument(no other arguments in this case) with error and result.</p>
+<p>Let’s see this in action. Here I have a simple doSomething function for example (Not practical as my function is not even asynchronous). Although we generally don’t create our own asynchronous functions, it should be noted that we can if we want to. We generally deal with calling the asynchronous function (second part). If we see the doSomething function call, we can see an anonymous function being passed as an argument(no other arguments in this case) with error and result.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">doSomething</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// Success case</span>
@@ -209,7 +209,7 @@
 </code></pre></div></div>
 
 <p><br />
-Let’s see a practical example. Here I want to find a customer with the given name from the mongoDB database. Obviously this findOne is an asynchronous operation. So, the first argument is the the normal argument of the function. The final argument on the other hand is the callback pattern of sending an anonymous function with the success result and error.</p>
+Let’s see a practical example. Here I want to find a customer with the given name from a mongoDB database.The findOne function is asynchronous. So, the first argument is the search query for the function and final argument on the other hand uses the callback pattern of sending an anonymous function with the success result and error.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nx">db</span><span class="p">.</span><span class="nx">collection</span><span class="p">(</span><span class="dl">'</span><span class="s1">Customers</span><span class="dl">'</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span>
         <span class="na">name</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">Sherlock Holmes</span><span class="dl">'</span>
@@ -294,16 +294,13 @@ This is indeed more easier to read that callbacks. But still, we haven’t achie
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum2</span><span class="p">);</span>
 </code></pre></div></div>
 
-<p><br />
-(Note that this obviously doesn’t work because add is supposed to be an asynchronous function)</p>
-
 <blockquote>
   <p>Async-await</p>
 </blockquote>
 
 <p>Now comes the cool part. Before diving into async and await, we need to get something clear first. Its not like async-await is the next progressive thing from promises like going from callbacks to promises. It just helps/makes it easier to work with promises and helps us manage our asynchronous code.</p>
 
-<p>Okay, what’s cool about async-await is that we can call asynchronous functions like we had wanted to above :</p>
+<p>What’s cool about async-await is that we can call asynchronous functions like we had wanted to above :</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
