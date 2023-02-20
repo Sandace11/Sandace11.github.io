@@ -1,5 +1,5 @@
 let geoJSONData;
-var map = L.map('map').setView([28, 84], 13);
+var map = L.map('map').setView([27.644453, 85.327706], 11);
 
 // Detect if website is running on mobile broswer
 if (document.documentElement.clientWidth < 500) {
@@ -9,7 +9,7 @@ if (document.documentElement.clientWidth < 500) {
         var radius = e.accuracy;
     
         L.marker(e.latlng).addTo(map)
-            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+            .bindPopup("You are Here! Within " + radius + " meters from this point. Zoom Out").openPopup();
     
         L.circle(e.latlng, radius).addTo(map);
     }
@@ -37,7 +37,7 @@ const jsonFetch = async () => {
 
 var myStyle = {
     "stroke": true,
-    "color": "#ff7800",
+    "color": "#6c25be",
     "fill": true,
     "fillOpacity": 0.01,
     "weight": 2,
